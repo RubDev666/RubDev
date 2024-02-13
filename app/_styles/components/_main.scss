@@ -36,8 +36,8 @@ main {
 
     div {
         display: flex;
-        align-items: center;
-        justify-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: row;
 
         button,
         a {
