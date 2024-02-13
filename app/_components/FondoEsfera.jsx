@@ -4,13 +4,13 @@ import { useEffect } from "react";
 
 export default function FondoEsfera() {
     //esperar un breve tiempo para mostrar la esfera cayendo
-    useEffect(() => {
+    /*useEffect(() => {
         const esfera = document.querySelector('.esfera');
 
         setTimeout(() => {
             esfera.style.opacity = '1';
-        }, 2000)
-    })
+        }, 3000)
+    })*/
 
     return (
         <div className="fondo">
