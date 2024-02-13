@@ -1,0 +1,226 @@
+@use '../globals/colors-var' as color;
+@use '../globals/mixins' as mixin;
+
+section#portafolio {
+    font-size: 20px;
+    padding: 10vh 0;
+}
+
+.portafolio-content {
+    min-height: 80vh;
+
+    h2 {
+        text-align: center;
+        margin: 0 0 20px 0;
+        font-size: 1.3em;
+    }
+
+    .portfolio-subcontainer {
+        flex-direction: column;
+        gap: 40px;
+
+        .latest-projects-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+    
+            .project-item {
+                background-color: color.$primary;
+                width: 100%;
+                max-width: 220px;
+                position: relative;
+                overflow: hidden;
+    
+                img {
+                    width: 100%;
+                    height: auto;
+                    opacity: .2;
+                }
+    
+                .fondo-gradient {
+                    position: absolute;
+                    /*background: linear-gradient(180deg, (transparent, 30%), color.$secondary);*/
+                    background: linear-gradient(180deg, (transparent, 40%), color.$secondary);
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    align-items: flex-end;
+                    transition: all .3s ease-in-out;
+    
+                    .links {
+                        padding: 20px 20px;
+    
+                        .titulo {
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            position: relative;
+                            margin-bottom: 30px;
+    
+                            &::before {
+                                @include mixin.lineTittle();
+                            }
+                        }     
+                        
+                        a {
+                            color: color.$text-color;
+                            display: inline-block;
+                            text-decoration: underline;
+                            transition: color .3s ease-in-out;
+                            margin-bottom: 15px;
+                            margin-right: 20px;
+                            font-size: .85em;
+    
+                            &:hover {
+                                color: color.$primary
+                            }
+    
+                            .icon {
+                                margin-right: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .btn-container {
+            text-align: center;
+
+            p {
+                margin-bottom: 40px
+            }
+
+            a {
+                @include mixin.btnAction(1em, 13px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .portafolio-content {
+        h2 {
+            font-size: 1.6em;
+        }
+    
+        .portfolio-subcontainer {
+            .latest-projects-grid {
+                box-sizing: border-box;
+                max-width: 900px;
+                max-height: 600px;
+                display: grid;
+                gap: 0;
+                grid-template-columns: 300px auto auto;
+                grid-template-rows: 300px auto auto;
+                grid-template-areas:
+                    'a b b'
+                    'a c c';
+                align-items: self-start;
+                overflow: hidden;
+                
+                .project-item {
+                    min-width: auto;
+                    max-width: 100%;
+    
+                    &.area-a {grid-area: a};
+                    &.area-b {grid-area: b};
+                    &.area-c {grid-area: c};
+    
+                    img {
+                        transition: all .3s ease-in-out;
+                        opacity: 1;
+                    }
+    
+                    .fondo-gradient {
+                        background: linear-gradient(180deg, (transparent, 40%), color.$secondary);
+                        bottom: -100%;
+                        align-items: center;
+        
+                        .links {
+                            padding-left: 60px;
+                        }
+                    }
+    
+                    &:hover .fondo-gradient {
+                        bottom: 0;
+                    }
+        
+                    &:hover img {
+                        opacity: .2;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1480px) {
+    .portafolio-content {
+        .portfolio-subcontainer {
+            flex-direction: row-reverse;
+
+            .latest-projects-grid {
+                min-width: 900px;
+            }
+        }
+    }
+}
+
+/*-------------- animacion mientras carga el grid --------- */
+.animation-loading {
+    display: inline-block;
+    position: relative;
+    width: 230px;
+    height: 230px;
+    max-width: 500px;
+    margin: auto;
+
+    div {
+        position: absolute;
+        opacity: 1;
+        animation: animation-loading 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        @include mixin.esfera(100px);
+
+        &:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+    }
+
+}
+
+@keyframes animation-loading {
+    0% {
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    4.9% {
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    5% {
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+}

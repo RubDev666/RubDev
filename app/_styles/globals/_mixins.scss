@@ -1,0 +1,49 @@
+@use './colors-var' as color;
+
+@mixin logo($size, $weight) {
+    span {
+        color: color.$primary;
+    }
+
+    color: color.$text-color;
+    font-size: $size;
+    font-weight: $weight;   
+}
+
+@mixin esfera($width-height) {
+    width: $width-height;
+    height: $width-height;
+    box-shadow: 0px 0px 30px color.$esfera;
+    background-color: color.$esfera;
+    border-radius: 100%;
+}
+
+@mixin btnHover() {
+    box-shadow: 0px 0px 30px color.$primary;
+    background-color: color.$primary;
+}
+
+@mixin btnAction($font-size, $padding) {
+    font-size: $font-size;
+    padding: $padding;
+    color: color.$text-color;
+    text-align: center;
+    border: solid 2px color.$primary;
+    background-color: transparent;
+    font-weight: 500;
+    transition: all .3s ease;
+    outline: none;
+
+    &:hover {
+        @include btnHover();
+    }
+}
+
+@mixin lineTittle() {
+    content: ''; 
+    position: absolute;
+    width: 70%;
+    height: 3px;
+    bottom: -6px;
+    background-color: color.$primary;
+}

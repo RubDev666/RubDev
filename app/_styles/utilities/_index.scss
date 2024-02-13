@@ -1,0 +1,57 @@
+/*-------------------- UTILIDADES Y CLASES REUTILIZABLES -----------*/
+@use '../globals/colors-var' as color;
+
+.margin-container {
+    margin: 0 10%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.flex-center-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.color-primary {
+    color: color.$primary;
+}
+
+.text-color-2 {
+    color: color.$text-color-2;
+}
+
+/*------------------- flexbox (recomendado usar en contenedores staticos que no seran modificados) ------------- */
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.direction-row {
+    flex-direction: row;
+}
+
+.direction-column {
+    flex-direction: column;
+}
+
+.display-none {
+    display: none;
+}

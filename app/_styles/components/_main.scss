@@ -1,0 +1,93 @@
+@use '../globals/colors-var' as color;
+@use '../globals/mixins' as mixin;
+
+#main {
+    width:  100%;
+    overflow: hidden;
+    padding: 150px 0 20vh;
+}
+
+main {
+    font-size: 20px;
+
+    h1 {
+        font-weight: 600;
+        margin: 0 0 10px 0;
+        font-size: 2em;
+
+        span {
+            text-decoration: underline;
+            font-weight: 700;
+        }
+    }
+
+    h2 {
+        margin: 0px 0 2em;
+        text-transform: capitalize;
+        font-weight: 400;
+        font-size: .8em;
+    }
+
+    p {
+        width: 100%;
+        font-size: .76em;
+        font-weight: 300;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        button,
+        a {
+            @include mixin.btnAction(.78em, 10px 14px);
+    
+            margin: 10px 30px 10px 0;
+        }
+    }
+}
+
+@media screen and (min-width: 640px) {
+    #main {
+        padding: 180px 0 20vh;
+    }
+
+    main {
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #main {
+        padding: 16% 0 20vh;
+    }
+
+    main {
+        p {
+            width: 70%;
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    main {
+        font-size: 35px;
+
+        h2 {
+            font-size: .7em;
+            margin: 0px 0 2.4em;
+        }
+
+        p {
+            font-size: .58em;
+        }
+
+        div {
+            button,
+            a {
+                @include mixin.btnAction(.56em, 10px 14px);
+            }
+        }
+    }
+}

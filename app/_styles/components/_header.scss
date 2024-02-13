@@ -1,0 +1,163 @@
+@use '../globals/colors-var' as color;
+@use '../globals/mixins' as mixin;
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 60px;
+    z-index: 900;
+    background-color: color.$secondary;
+
+    .fondo-opacity.active {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 60px;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+nav {
+    height: 100%;
+
+    .logo-header {
+        @include mixin.logo(23px, 700);
+    }
+
+    .icon {
+        color: color.$primary;
+        width: 27px;
+        height: 27px;
+    }
+
+    .navLinks-container {
+        position: absolute;
+        background-color: color.$secondary;
+        top: 60px;
+        padding: 40px 50px 20px;
+        width: 100%;
+        max-width: 400px;
+        height: 80vh;
+        right: -400px;
+        z-index: 850;
+
+        /* esta propiedad se añae con javascript mejor, para mejor control del dom
+            transition: right .5s ease-in-out;
+            */
+
+        .border-drag {
+            height: 40px;
+            width: 100%;
+            max-width: 220px;
+            border: solid transparent 2px;
+            position: absolute;
+            box-sizing: border-box;
+            z-index: -100;
+            left: 50px;
+
+            /* esta propiedad se añae con javascript mejor, para mejor control del dom
+                transition: all .2s ease-in-out;
+                */
+        }
+
+        /*separado para corregir error al cargar el sitio*/
+        .border-drag-color {
+            border-color: color.$primary;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+
+            li {
+                list-style: none;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                padding-left: 20px;
+
+                a {
+                    color: color.$text-color;
+                    font-size: 25px;
+                    transition: color .2s ease-in-out;
+                    width: 100%;
+                }
+
+                a.navlink-active {
+                    color: color.$primary;
+                }
+
+                &:hover a {
+                    color: color.$primary;
+                }
+            }
+        }
+
+        p {
+            position: absolute;
+            font-size: 15px;
+            bottom: 10px;
+            right: 30px;
+
+            .color-primary {
+                font-weight: 700;
+            }
+        }
+    }
+
+    .show-navbar {
+        right: 0;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    nav {
+        .logo-header {
+            @include mixin.logo(26px, 700);
+        }
+
+        .icon {
+            display: none;
+        }
+
+        .navLinks-container {
+            position: relative;
+            height: auto;
+            top: 0;
+            right: 0;
+            padding: 0px;
+            width: auto;
+            max-width: 100%;
+
+            .border-drag {
+                height: 37px;
+                width: 0px;
+                left: auto;
+                top: 0;
+            }
+
+            ul {
+                flex-direction: row;
+    
+                li {
+                    height: 37px;
+                    padding: 0 30px;
+    
+                    a {
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            p {
+                display: none;
+            }
+        }
+    }
+}

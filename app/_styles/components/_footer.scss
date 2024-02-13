@@ -1,0 +1,28 @@
+@use '../globals/colors-var' as color;
+@use '../globals/mixins' as mixin;
+
+footer {
+    background-color: color.$secondary;
+    text-align: center;
+
+    p {
+        @include mixin.logo(13px, 500);
+        
+        padding: 20px;
+        margin: 0;
+    }
+
+    &.footer-not-found {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    footer {
+        p {
+            @include mixin.logo(18px, 500);
+        }
+    }
+}

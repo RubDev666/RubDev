@@ -1,0 +1,231 @@
+@use '../globals/mixins' as mixin;
+@use '../globals/colors-var' as color;
+
+#about {
+    width: 100%;
+    padding: 10vh 0;
+    font-size: 20px;
+    overflow: hidden;
+
+    h2 {
+        font-size: 1.3em;
+        margin: 20px 0;
+        text-align: center;
+    }
+}
+
+.about-container {
+    padding: 2% 0;
+    background-color: color.$secondary-container;
+
+    .btns-container {
+        .btns-about {
+            border: solid 2px color.$primary;
+
+            button {
+                padding: 10px 10px;
+                border: none;
+                color: color.$text-color;
+                background: transparent;
+                font-size: .7em;
+                margin: 0;
+                transition: all .3s ease-in-out
+            }
+
+            .seleccionado {
+                @include mixin.btnHover();
+            }
+        }
+    }
+
+    .info-about-container {
+        margin: 0% 5%;
+        padding: 20px 2%;
+
+        .about-element {
+            display: none;
+
+            &.mostrar-about {
+                display: flex;
+            }
+
+            &.education {    
+                .education-content {
+                    opacity: 0;
+                    transition: opacity .5s ease-in-out;
+                    text-align: center;
+                    margin-bottom: 20px;
+
+                    h3 {
+                        margin: 0 0 24px 0;
+                        font-size: .9em;
+                        position: relative;
+                        display: inline-block;
+
+                        &::before {
+                            @include mixin.lineTittle();
+                        }
+                    }
+        
+                    ul {
+                        padding-left: 20px;
+                        margin: 0 0 30px;
+        
+                        li {
+                            font-size: .75em;
+                            font-weight: 500;
+                            text-align: initial;
+                            margin-bottom: 20px;
+                            list-style: none;
+                            position: relative;
+    
+                            &::before {
+                                position: absolute;
+                                content: '';
+                                @include mixin.esfera(12px);
+                                left: -20px;
+                                top: 6px; 
+                            }
+    
+                            /*&::after {
+                                position: absolute;
+                                content: '';
+                                left: -15px;
+                                top: 6px;
+                                height: 300%;
+                                width: 2px;
+                                background-color: rgb(255, 255, 255);
+                            }*/
+    
+                            &:nth-last-child(n + 2)::after {
+                                position: absolute;
+                                content: '';
+                                left: -15px;
+                                top: 6px;
+                                height: 160%;
+                                width: 2px;
+                                background-color: rgb(255, 255, 255);
+                            }
+        
+                            span {
+                                font-size: .9em;
+                                font-weight: 300;
+                            }
+        
+                            .academia-span {
+                                text-transform: uppercase;
+                                font-size: 1em;
+                            }
+                        }
+                    }
+        
+                    button {
+                        @include mixin.btnAction(.8em, 10px);
+        
+                        margin-top: 20px;
+                    }
+                }
+            }
+
+            &.who {
+                flex-direction: column;
+
+                .me-content {
+                    opacity: 0;
+                    margin-bottom: 30px;
+                    transition: opacity .5s ease-in-out;
+
+                    h3 {
+                        font-size: .9em;
+                        position: relative;
+                        display: inline;
+
+                        &::before {
+                            @include mixin.lineTittle();
+                        }
+                    }
+
+                    p {
+                        font-size: .75em;
+                        font-weight: 300;
+                    }
+
+                    span {
+                        color: color.$text-color;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        .tecnologias-container {
+            gap: 10px;
+            flex-wrap: wrap;
+
+            .img-sphere {
+                @include mixin.esfera(60px);
+
+                img {
+                    width: 80%;
+                    height: auto;
+                    opacity: .9;
+
+                    &.type {
+                        width: 60%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 640px) {
+    #about {
+        font-size: 23px;
+    }
+
+    .about-container {
+        .btns-container {
+            .btns-about {
+                button {
+                    padding: 10px 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .about-container {    
+        .info-about-container {
+            .about-element {   
+                &.who {
+                    .me-content {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: center;
+                        gap: 30px;
+
+                        .resumen,
+                        .comienzos {
+                            width: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .about-container {
+        .btns-container {
+            .btns-about {
+                button {
+                    padding: 10px 30px;
+                }
+            }
+        }
+    }
+}

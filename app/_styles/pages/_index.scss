@@ -1,0 +1,166 @@
+@use '../globals/colors-var' as color;
+@use '../globals/mixins' as mixin;
+
+#portafolio.page {
+    padding: 10vh 0;
+    margin-top: 60px;
+    font-size: 20px;
+
+    .project-tittle {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 30px;
+
+        h2 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+    
+        p {
+            margin: 0px 0 0;
+            font-size: .7em;
+            font-weight: 300;
+        }
+    }
+
+    .projects-container {
+        .project {
+            width: 100%;
+            position: relative;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+            transition: background .6s ease-in-out;
+        
+            &::after {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(-20deg, (transparent, 90%), color.$primary);
+                position: absolute;
+                transition: all .4s ease-in-out;
+                top: -100%;
+            }
+        
+            &:hover::after {
+                top: 0;
+            }
+        
+            img {
+                width: 100%;
+                height: auto;
+                max-width: 300px;
+                position: relative;
+                z-index: 100;
+            }
+        
+            .info {
+                padding: 25px 0;
+                position: relative;
+                z-index: 100;
+        
+                p {
+                    margin: 0 0 20px 0;
+                }
+        
+                .titulo-fecha {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .titulo {
+                        font-size: 1.1em;
+                        font-weight: 400;
+                        position: relative;
+                        display: inline-block;
+            
+                        &::before {
+                            @include mixin.lineTittle();
+                        }
+                    }
+
+                    .fecha {
+                        font-weight: 200;
+                        font-size: .7em;
+                        margin-left: 30px;
+                    }
+                }
+        
+                .description {
+                    font-size: .8em;
+                    font-weight: 200;
+                }
+        
+                .links {
+                    display: flex;
+                    align-items: self-start;
+                    justify-content: flex-start;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-bottom: 25px;
+        
+                    a {
+                        color: color.$text-color;
+                        text-decoration: underline;
+                        transition: color .3s ease-in-out;
+                        font-size: .8em;
+        
+                        &:hover {
+                            color: color.$primary;
+                        }
+                    }
+        
+                    .icon {
+                        font-size: 13px;
+                        margin: 0 5px 0 0;
+                    }
+                }
+        
+                .technologies-tag {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+        
+                    margin-top: 20px;
+        
+                    span {
+                        color: color.$primary;
+                        font-weight: 600;
+                        padding: 10px;
+                        background-color: color.$primary-opacity;
+                        font-size: .8em;
+                    }
+                }
+            }
+        }        
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #portafolio.page {
+        .project-tittle {
+            h2 {
+                font-size: 1.6em;
+            }
+        }
+
+        .projects-container {
+            .project {
+                flex-direction: row-reverse;
+                gap: 30px;
+        
+                .info {
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    #portafolio.page {
+        font-size: 23px;
+    }
+}
